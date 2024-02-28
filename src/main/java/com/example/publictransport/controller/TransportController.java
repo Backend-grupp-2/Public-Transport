@@ -22,7 +22,7 @@ public class TransportController {
     public List<Route> getBusRoutes(@PathVariable String start, @PathVariable String end){
         RouteObj routeList = restTemplate.getForObject(
                 "https://transport-routes.azurewebsites.net/api/v1/route/"
-                        + start + "%20bus/" + end + "%20bus", RouteObj.class);
+                        + start + " bus/" + end + " bus", RouteObj.class);
 
         return routeList.getRoutes();
     }
