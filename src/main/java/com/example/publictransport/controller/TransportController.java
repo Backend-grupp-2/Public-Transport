@@ -30,7 +30,7 @@ public class TransportController {
     @GetMapping("/{end}")
     public List<Route> getBusRoutesFromStation(@PathVariable String end){
         RouteObj routeList = restTemplate.getForObject(
-                "https://transport-routes.azurewebsites.net/api/v1/route/"
+                "https://transport-routes.azurewebsites.net/api/v1/route/end/"
                         + end + " bus", RouteObj.class);
 
         return routeList.getRoutes();
@@ -39,7 +39,7 @@ public class TransportController {
     @GetMapping("/save/{id}")
     public Route saveRuote(@PathVariable Long id){
         Route route = restTemplate.getForObject(
-                "https://transport-routes.azurewebsites.net/api/v1/route/"
+                "https://transport-routes.azurewebsites.net/api/v1/route/save/"
                         + id, Route.class);
 
         return route;
