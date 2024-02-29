@@ -22,8 +22,26 @@ public class TransportController {
     public List<Route> getBusRoutes(@PathVariable String start, @PathVariable String end){
         RouteObj routeList = restTemplate.getForObject(
                 "https://transport-routes.azurewebsites.net/api/v1/route/"
-                        + start + " bus/" + end + " bus", RouteObj.class);
+                        + start + " bus" + "/" + end + " bus", RouteObj.class);
 
         return routeList.getRoutes();
+    }
+
+    @GetMapping("/{end}")
+    public List<Route> getBusRoutesFromStation(@PathVariable String end){
+        RouteObj routeList = restTemplate.getForObject(
+                "https://transport-routes.azurewebsites.net/api/v1/route/"
+                        + end + " bus", RouteObj.class);
+
+        return routeList.getRoutes();
+    }
+
+    @GetMapping("/save/{id}")
+    public Route saveRuote(@PathVariable Long id){
+        Route route = restTemplate.getForObject(
+                "https://transport-routes.azurewebsites.net/api/v1/route/"
+                        + id, Route.class);
+
+        return route;
     }
 }
